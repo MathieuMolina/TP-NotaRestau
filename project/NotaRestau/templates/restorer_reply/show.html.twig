@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RestorerReply{% endblock %}
+
+{% block body %}
+    <h1>RestorerReply</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ restorer_reply.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ restorer_reply.date ? restorer_reply.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ restorer_reply.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_restorer_reply_index') }}">back to list</a>
+
+    <a href="{{ path('app_restorer_reply_edit', {'id': restorer_reply.id}) }}">edit</a>
+
+    {{ include('restorer_reply/_delete_form.html.twig') }}
+{% endblock %}

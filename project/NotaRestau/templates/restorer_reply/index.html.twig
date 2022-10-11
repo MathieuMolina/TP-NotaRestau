@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RestorerReply index{% endblock %}
+
+{% block body %}
+    <h1>RestorerReply index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for restorer_reply in restorer_replies %}
+            <tr>
+                <td>{{ restorer_reply.id }}</td>
+                <td>{{ restorer_reply.date ? restorer_reply.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ restorer_reply.content }}</td>
+                <td>
+                    <a href="{{ path('app_restorer_reply_show', {'id': restorer_reply.id}) }}">show</a>
+                    <a href="{{ path('app_restorer_reply_edit', {'id': restorer_reply.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_restorer_reply_new') }}">Create new</a>
+{% endblock %}

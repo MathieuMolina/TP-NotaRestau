@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New RestorerReply{% endblock %}
+
+{% block body %}
+    <h1>Create new RestorerReply</h1>
+
+    {{ include('restorer_reply/_form.html.twig') }}
+
+    <a href="{{ path('app_restorer_reply_index') }}">back to list</a>
+{% endblock %}

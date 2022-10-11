@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserReview{% endblock %}
+
+{% block body %}
+    <h1>UserReview</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_review.id }}</td>
+            </tr>
+            <tr>
+                <th>Rate</th>
+                <td>{{ user_review.rate }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ user_review.content }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ user_review.date ? user_review.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_review_index') }}">back to list</a>
+
+    <a href="{{ path('app_user_review_edit', {'id': user_review.id}) }}">edit</a>
+
+    {{ include('user_review/_delete_form.html.twig') }}
+{% endblock %}
