@@ -20,6 +20,10 @@ class RestorerReply
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'restorerReplies')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?UserReview $user_review = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class RestorerReply
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getUserReview(): ?UserReview
+    {
+        return $this->user_review;
+    }
+
+    public function setUserReview(?UserReview $user_review): self
+    {
+        $this->user_review = $user_review;
 
         return $this;
     }

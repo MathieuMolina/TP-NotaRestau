@@ -30,6 +30,9 @@ class Restaurant
     #[ORM\OneToMany(mappedBy: 'id_restaurant', targetEntity: UserReview::class)]
     private Collection $userReviews;
 
+    #[ORM\ManyToOne(inversedBy: 'restaurants')]
+    private ?User $id_user = null;
+
     public function __construct()
     {
         $this->userReviews = new ArrayCollection();
@@ -114,6 +117,18 @@ class Restaurant
                 $userReview->setIdRestaurant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIdUser(): ?User
+    {
+        return $this->id_user;
+    }
+
+    public function setIdUser(?User $id_user): self
+    {
+        $this->id_user = $id_user;
 
         return $this;
     }

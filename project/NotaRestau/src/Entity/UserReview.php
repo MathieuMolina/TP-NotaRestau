@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserReviewRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,17 @@ class UserReview
 
     #[ORM\ManyToOne(inversedBy: 'userReviews')]
     private ?Restaurant $id_restaurant = null;
+
+    #[ORM\ManyToOne(inversedBy: 'userReviews')]
+    private ?User $user_id = null;
+
+    #[ORM\OneToMany(mappedBy: 'user_review', targetEntity: RestorerReply::class)]
+    private Collection $restorerReplies;
+
+    public function __construct()
+    {
+        $this->restorerReplies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +88,48 @@ class UserReview
     public function setIdRestaurant(?Restaurant $id_restaurant): self
     {
         $this->id_restaurant = $id_restaurant;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RestorerReply>
+     */
+    public function getRestorerReplies(): Collection
+    {
+        return $this->restorerReplies;
+    }
+
+    public function addRestorerReply(RestorerReply $restorerReply): self
+    {
+        if (!$this->restorerReplies->contains($restorerReply)) {
+            $this->restorerReplies->add($restorerReply);
+            $restorerReply->setUserReview($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestorerReply(RestorerReply $restorerReply): self
+    {
+        if ($this->restorerReplies->removeElement($restorerReply)) {
+            // set the owning side to null (unless already changed)
+            if ($restorerReply->getUserReview() === $this) {
+                $restorerReply->setUserReview(null);
+            }
+        }
 
         return $this;
     }
