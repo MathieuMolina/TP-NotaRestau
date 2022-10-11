@@ -1,0 +1,18 @@
+App\Entity\User:
+  
+  user_1:
+    username: Bob
+    email: admin@admin.fr
+    password: admin
+    roles: ["ROLE_ADMIN"]
+
+  user_2:
+    username: Joe
+    email: joe@user.fr
+    password: 123
+    roles: ["ROLE_USER"]
+  
+  user_{3..50}:
+    username: <name()>
+    email: <email()>
+    password: <password()>

@@ -40,6 +40,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: UserReview::class)]
     private Collection $userReviews;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Username = null;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
@@ -184,6 +187,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $userReview->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->Username;
+    }
+
+    public function setUsername(string $Username): self
+    {
+        $this->Username = $Username;
 
         return $this;
     }
