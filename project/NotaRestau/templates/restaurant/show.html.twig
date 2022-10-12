@@ -3,36 +3,35 @@
 {% block title %}Restaurant{% endblock %}
 
 {% block body %}
-    <h1>Restaurant</h1>
+    <h1>Restaurants</h1>
+    {% for restaurant in restaurant %}
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ restaurant.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ restaurant.name }}</td>
+                </tr>
+                <tr>
+                    <th>Adress</th>
+                    <td>{{ restaurant.adress }}</td>
+                </tr>
+                <tr>
+                    <th>Phone_number</th>
+                    <td>{{ restaurant.phoneNumber }}</td>
+                </tr>
+                <tr>
+                    <th>Post_code</th>
+                    <td>{{ restaurant.postCode }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
+        {{ include('restaurant/_delete_form.html.twig') }}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ restaurant.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ restaurant.name }}</td>
-            </tr>
-            <tr>
-                <th>Adress</th>
-                <td>{{ restaurant.adress }}</td>
-            </tr>
-            <tr>
-                <th>Phone_number</th>
-                <td>{{ restaurant.phoneNumber }}</td>
-            </tr>
-            <tr>
-                <th>Post_code</th>
-                <td>{{ restaurant.postCode }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+    {% endfor %}
     <a href="{{ path('app_restaurant_index') }}">back to list</a>
-
-    <a href="{{ path('app_restaurant_edit', {'id': restaurant.id}) }}">edit</a>
-
-    {{ include('restaurant/_delete_form.html.twig') }}
 {% endblock %}

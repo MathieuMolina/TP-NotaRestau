@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use App\Entity\User;
 use App\Form\RestaurantType;
 use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/restaurant')]
 class RestaurantController extends AbstractController
 {
+
+
     #[Route('/', name: 'app_restaurant_index', methods: ['GET'])]
     public function index(RestaurantRepository $restaurantRepository): Response
     {
@@ -69,10 +72,25 @@ class RestaurantController extends AbstractController
     #[Route('/{id}', name: 'app_restaurant_delete', methods: ['POST'])]
     public function delete(Request $request, Restaurant $restaurant, RestaurantRepository $restaurantRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$restaurant->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $restaurant->getId(), $request->request->get('_token'))) {
             $restaurantRepository->remove($restaurant, true);
         }
 
         return $this->redirectToRoute('app_restaurant_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/show/user', name: 'app_restaurant_show', methods: ['GET'])]
+    public function showByUser(RestaurantRepository $restaurantRepository): Response
+    {
+        $restaurants = [];
+        if ($this->getUser() != null) {
+            $restaurants = $restaurantRepository->findBy(['id_user' => $this->getUser()->getId()]);
+        } else {
+            $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('restaurant/show.html.twig', [
+            'restaurant' => $restaurants,
+        ]);
     }
 }

@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/user')]
+#[Route('/user')]
 class UserController extends AbstractController
 {
-
+    #[IsGranted("ROLE_USER")]
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -43,8 +43,9 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(User $user, $id): Response
     {
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);

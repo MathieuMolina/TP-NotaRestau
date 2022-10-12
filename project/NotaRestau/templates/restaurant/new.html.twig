@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Restaurant{% endblock %}
+{% block title %}Nouveau restaurant{% endblock %}
 
 {% block body %}
-    <h1>Create new Restaurant</h1>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>Créer un nouveau restaurant</h1>
 
-    {{ include('restaurant/_form.html.twig') }}
+        {{ include('restaurant/_form.html.twig') }}
 
-    <a href="{{ path('app_restaurant_index') }}">back to list</a>
+        <a href="{{ path('app_restaurant_index') }}">Retourner à vos restaurants</a>
+    </div>
 {% endblock %}
