@@ -1,0 +1,9 @@
+App\Entity\RestorerReply:
+
+    restorerReply_1:
+        date: <dateTime()>
+        content: J'ai moi même cuisiné tout ça !
+
+    restorerReply_{2..10}:
+        date: <dateTime()>
+        content: <text()>

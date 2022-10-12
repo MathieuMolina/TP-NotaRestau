@@ -1,0 +1,13 @@
+App\Entity\UserReview:
+
+#id_restaurant_id	rate	content	date	user_id_id
+
+  userReview_1:
+    rate: 1
+    content: C'est vraiment pas très bon...
+    date: <dateTime()>
+
+  userReview_{2..10}:
+    rate: <numberBetween(0, 5)>
+    content: <text()>
+    date: <dateTime()>

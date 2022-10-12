@@ -1,0 +1,13 @@
+App\Entity\Restaurant:
+
+  restaurant_1:
+    name: La bonne assiette
+    adress: 123 route de Montluel
+    phone_number: 04 78 78 78 78
+    post_code: 01120
+
+  restaurant_{2..10}:
+   name: <city()>
+   adress: <streetAddress()>
+   phone_number: <phoneNumber()>
+   post_code: <numberBetween(10000, 90000)>

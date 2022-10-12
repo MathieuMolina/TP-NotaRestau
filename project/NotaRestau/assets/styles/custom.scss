@@ -3,6 +3,11 @@ main{
     padding: 0;
 }
 
+body{
+    height: 100vh;
+    width: 100vw;
+}
+
 .navbar-brand {
     font-family: 'Lobster', cursive;
     color: white;
@@ -13,3 +18,12 @@ main{
 .navbar-brand:hover {
     color:   #aee24e;
 }
+
+
+.bloc-search {
+    width: 60%;
+    height: 200px;
+    background-image: url('../images/searchimg.jpeg');
+    background-size: cover;
+}
+

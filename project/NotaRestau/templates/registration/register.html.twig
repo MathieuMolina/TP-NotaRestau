@@ -6,16 +6,26 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
+    <div class="d-flex flex-column justify-content-around align-items-center h-75">
+        <div class="d-flex flex-column justify-content-end">
+            <cite><q class="fs-1 fw-bold">L’avis d’un homme sage vaut un oracle.</q></cite>
+            <i>Hazrat Ali</i>
+        </div>
 
-    <h1>Register</h1>
+        <div class="border border-primary border-3 rounded-2 h-50 w-50">
+            <h1 class="text-center">S'inscrire</h1>
+            <div class="d-flex flex-column justify-content-evenly align-items-start h-75 w-100">
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+                {{ form_row(registrationForm.agreeTerms) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                <div class="d-flex justify-content-end"><button type="submit" class="btn btn-danger rounded-pill">Envoyer</button></div>
+            {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
