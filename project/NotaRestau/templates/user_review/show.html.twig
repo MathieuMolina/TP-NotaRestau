@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Nom du restaurant</h5>
+                        <h5 class="card-title">Your review: </h5>
                         <p class="card-text">{{ user_review.content }}</p>
                         <p class="card-text">{{ user_review.rate }}</p>
                         <p class="card-text"><small class="text-muted">{{ user_review.date ? user_review.date|date('Y-m-d H:i:s') : '' }}</small></p>
@@ -23,7 +23,4 @@
             </div>
         </div>
     {% endfor %}
-{#    if (user_review=null) {#}
-{#        <p There is no review for this user></p>#}
-{#    }#}
 {% endblock %}
