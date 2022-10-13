@@ -5,27 +5,6 @@
 {% block body %}
     <h1>UserReview</h1>
     {%  for user_review in user_reviews %}
-{#    <table class="table">#}
-{#        <tbody>#}
-{#            <tr>#}
-{#                <th>Id</th>#}
-{#                <td>{{ user_review.id }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Rate</th>#}
-{#                <td>{{ user_review.rate }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Content</th>#}
-{#                <td>{{ user_review.content }}</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#                <th>Date</th>#}
-{#                <td>{{ user_review.date ? user_review.date|date('Y-m-d H:i:s') : '' }}</td>#}
-{#            </tr>#}
-{#        </tbody>#}
-{#    </table>#}
-
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -38,11 +17,13 @@
                         <p class="card-text">{{ user_review.rate }}</p>
                         <p class="card-text"><small class="text-muted">{{ user_review.date ? user_review.date|date('Y-m-d H:i:s') : '' }}</small></p>
                         <btn class="btn btn-success rounded-pill w-25"><a href="{{ path('app_user_review_edit', {'id': user_review.id}) }}" class="text-decoration-none text-white">Edit</a></btn>
-                        <btn class="btn btn-danger rounded-pill w-25"><a href="{{ include('user/_delete_form.html.twig') }}" class="text-decoration-none text-white">Delet</a></btn>
+                        {{ include('user_review/_delete_form.html.twig') }}
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
-
+{#    if (user_review=null) {#}
+{#        <p There is no review for this user></p>#}
+{#    }#}
 {% endblock %}

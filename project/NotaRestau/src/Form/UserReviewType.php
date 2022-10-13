@@ -15,7 +15,7 @@ class UserReviewType extends AbstractType
             ->add('rate')
             ->add('content')
             ->add('date')
-            ->add('id_restaurant')
+//            ->add('id_restaurant')
         ;
     }
 

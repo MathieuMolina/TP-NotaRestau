@@ -43,11 +43,13 @@ class RestaurantController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_restaurant_show', methods: ['GET'])]
-    public function show(Restaurant $restaurant): Response
+    #[Route('/{user}/list', name: 'app_restaurant_show', methods: ['GET'])]
+    public function show(Restaurant $restaurant, RestaurantRepository $restaurantRepository, User $user): Response
     {
+        $restaurants = $restaurantRepository->findBy(['id_user'=>$user->getId()]);
+        dump($restaurants);
         return $this->render('restaurant/show.html.twig', [
-            'restaurant' => $restaurant,
+            'restaurants' => $restaurants,
         ]);
     }
 

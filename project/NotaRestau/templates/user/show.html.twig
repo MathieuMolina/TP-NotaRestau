@@ -24,7 +24,7 @@
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
-                <th>Editer</th>
+                <th>Edit</th>
                 <td>
                     <btn class="btn btn-success rounded-pill w-25"><a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-decoration-none text-white">Edit</a></btn>
                 </td>
@@ -32,9 +32,19 @@
             <tr>
                 <th>All your reviews
                 <td>
-                    <btn class="btn btn-primary rounded-pill w-25"><a href="{{ path('app_user_review_show', {'user': user.id}) }}" class="text-decoration-none text-white">List</a></btn>
+                    <btn class="btn btn-primary rounded-pill w-25"><a href="{{ path('app_user_review_show', {'user': user.id}) }}" class="text-decoration-none text-white">Show</a></btn>
                 </td>
             </tr>
+            {% if app.user %}
+                {% if is_granted('ROLE_RESTORER') %}
+                    <tr>
+                        <th>All your restaurants
+                        <td>
+                            <btn class="btn btn-warning rounded-pill w-25"><a href="{{ path('app_restaurant_show', {'user': user.id}) }}" class="text-decoration-none text-white">Show</a></btn>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endif %}
             <tr>
                 <th>Delete</th>
                 <td>

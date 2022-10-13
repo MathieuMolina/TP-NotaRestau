@@ -54,9 +54,11 @@ class UserReviewController extends AbstractController
     #[Route('/{id}/edit', name: 'app_user_review_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, UserReview $userReview, UserReviewRepository $userReviewRepository): Response
     {
-        $form = $this->createForm(UserReviewType::class, $userReview);
+        $userReview = $userReviewRepository->findBy(['id' => $userReview->getId()]);
+//        dump($userReview);
+        $form = $this->createForm(UserReviewType::class, $userReview[0]);
         $form->handleRequest($request);
-
+        dump($form);
         if ($form->isSubmitted() && $form->isValid()) {
             $userReviewRepository->save($userReview, true);
 
