@@ -8,8 +8,8 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
             </tr>
             <tr>
                 <th>Email</th>
@@ -24,15 +24,26 @@
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
-                <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <th>Editer</th>
+                <td>
+                    <btn class="btn btn-success rounded-pill w-25"><a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-decoration-none text-white">Edit</a></btn>
+                </td>
             </tr>
+            <tr>
+                <th>All your reviews
+                <td>
+                    <btn class="btn btn-primary rounded-pill w-25"><a href="{{ path('app_user_review_show', {'user': user.id}) }}" class="text-decoration-none text-white">List</a></btn>
+                </td>
+            </tr>
+            <tr>
+                <th>Delete</th>
+                <td>
+                    {{ include('user/_delete_form.html.twig') }}
+                </td>
+            </tr>
+
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

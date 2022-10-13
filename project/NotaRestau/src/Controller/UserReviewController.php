@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\UserReview;
 use App\Form\UserReviewType;
 use App\Repository\UserReviewRepository;
@@ -40,11 +41,13 @@ class UserReviewController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_review_show', methods: ['GET'])]
-    public function show(UserReview $userReview): Response
+    #[Route('/{user}/reviews', name: 'app_user_review_show', methods: ['GET'])]
+    public function show(UserReviewRepository $userReviewRepository, User $user): Response
     {
+        $userReviews = $userReviewRepository->findBy(['user_id' => $user->getId()]);
+        dump($userReviews);
         return $this->render('user_review/show.html.twig', [
-            'user_review' => $userReview,
+            'user_reviews' => $userReviews
         ]);
     }
 
@@ -75,4 +78,6 @@ class UserReviewController extends AbstractController
 
         return $this->redirectToRoute('app_user_review_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }
