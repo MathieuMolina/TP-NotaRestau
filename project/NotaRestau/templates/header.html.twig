@@ -16,7 +16,7 @@
                     {%  elseif is_granted('ROLE_RESTORER') %}
                         <a class="nav-link text-light" href="{{ path('app_restaurant_show') }}">Vos Restaurants</a>
                     {% endif %}
-                    <a class="nav-link text-light" href="{{ path('app_user_show', {'id':app.user.id}) }}">Votre Profil</a>
+                    <a class="nav-link text-light" href="{{ path('app_user_show', {'id':user.id}) }}">Votre Profil</a>
                     <a class="nav-link text-light" href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
                     <a class="nav-link text-light btn btn-dark" href="{{ path('app_login') }}">Connexion</a>

@@ -43,9 +43,8 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user, $id): Response
+    public function show(User $user): Response
     {
-
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
@@ -54,7 +53,7 @@ class UserController extends AbstractController
     #[Route('/{user}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
-        //$u = $userRepository->find($user);
+        $u = $userRepository->find($user);
         dump($user);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
